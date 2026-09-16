@@ -106,5 +106,37 @@ export const createHotel = async (req, res) => {
   }
 };
 
-//get all hotels
+//get all hotels by user id
+export const getAllHotelsByUserId = async (req, res) => {
+  try {
+    const ownerId = req.session.userId;
+
+    if (!ownerId) {
+      return res.status(401).json({
+        success: false,
+        message: "please Sign in",
+      });
+    }
+
+    const hotels = await Hotel.find({ ownerId }).sort({ createdAt: -1 });
+
+    if (hotels.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: hotels,
+    });
+  } catch (error) {
+    console.error("Error fetching hotel details", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
 
