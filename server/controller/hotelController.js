@@ -140,3 +140,138 @@ export const getAllHotelsByUserId = async (req, res) => {
   }
 };
 
+//update hotel details
+export const updateHotelDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.session?.userId;
+
+    const {
+      name,
+      email,
+      phone,
+      address,
+      description,
+      coverImage,
+      amenities,
+      checkInTime,
+      checkOutTime,
+      status,
+      currency,
+    } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Please Sign in",
+      });
+    }
+
+    const toValidateData = {
+      name,
+      email,
+      phone,
+      address,
+      description,
+      coverImage,
+    };
+
+    const validateResults = hotelDetailValidate(toValidateData);
+
+    if (validateResults.length > 0) {
+      console.log("validations error");
+      for (let i = 0; i < validateResults.length; i++) {
+        console.log(validateResults[i]);
+      }
+      return res.status(422).json({
+        errorMsg: "check your details",
+        validateData: validateResults,
+      });
+    }
+
+    const hotel = await Hotel.findOne({ _id: id, ownerId: userId });
+
+    if (!hotel) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found or unauthorized",
+      });
+    }
+
+    if (name) hotel.name = name.trim();
+    if (email) hotel.email = email.toLowerCase().trim();
+    if (phone) hotel.phone = phone.trim();
+    if (description) hotel.description = description.trim();
+    if (coverImage) hotel.coverImage = coverImage.trim();
+    if (checkInTime) hotel.checkInTime = checkInTime;
+    if (checkOutTime) hotel.checkOutTime = checkOutTime;
+    if (status) hotel.status = status;
+    if (currency) hotel.currency = currency.toUpperCase().trim();
+
+    if (address) {
+      if (address.street) hotel.address.street = address.street.trim();
+      if (address.city) hotel.address.city = address.city.trim();
+      if (address.country) hotel.address.country = address.country.trim();
+      if (address.postalCode)
+        hotel.address.postalCode = address.postalCode.trim();
+    }
+
+    if (Array.isArray(amenities)) {
+      hotel.amenities = amenities;
+    }
+
+    await hotel.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Hotel details updated successfully",
+      data: hotel,
+    });
+  } catch (error) {
+    console.error("Error updating hotel details", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+//delete hotel
+export const deleteHotel = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.session?.userId;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Please Sign in",
+      });
+    }
+
+    const deletedHotel = await Hotel.findOne({ _id: id, ownerId: userId });
+
+    if (!deletedHotel) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found",
+      });
+    }
+
+    deletedHotel.isActive = false;
+    deletedHotel.status = "closed";
+
+    await deletedHotel.save();
+
+    return res.status(200).json({
+      success: true,
+      data: deletedHotel,
+    });
+  } catch (error) {
+    console.error("Error deleting Hotel", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
