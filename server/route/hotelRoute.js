@@ -3,7 +3,9 @@ import { requireAuth } from "../middleware/requireAuth.js";
 import { requireRole } from "../middleware/requireRole.js";
 import {
   createHotel,
+  deleteHotel,
   getAllHotelsByUserId,
+  updateHotelDetails,
 } from "../controller/hotelController.js";
 import { verifyHotelEmail } from "../middleware/mailer.js";
 
@@ -17,5 +19,12 @@ hotelRouter.get(
   requireRole("admin"),
   getAllHotelsByUserId,
 );
+hotelRouter.put(
+  "/update/:id",
+  requireAuth,
+  requireRole("admin"),
+  updateHotelDetails,
+);
+hotelRouter.put("/delete/:id", requireAuth, requireRole("admin"), deleteHotel);
 
 export default hotelRouter;
