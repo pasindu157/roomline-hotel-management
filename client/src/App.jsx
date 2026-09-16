@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Login from "./pages/login/Login";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import AdminHome from "./pages/admin/adminHome/AdminHome";
 
 const Home = () => <h1>customer home page</h1>;
-const AdminDashboard = () => <h1>Admin dashboard</h1>;
 const ManagerDashboard = () => <h1>Manager dashboard</h1>;
 
 const App = () => {
@@ -37,6 +37,7 @@ const App = () => {
       >
         <Route path="/home" element={<Home />} />
       </Route>
+
       {/* 🔒 ADMIN ONLY  */}
       <Route
         element={
@@ -47,8 +48,9 @@ const App = () => {
           )
         }
       >
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminHome />} />
       </Route>
+
       {/* 🔒 MANAGERS only */}
       <Route
         element={
