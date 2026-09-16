@@ -1,0 +1,272 @@
+.login-main {
+  height: 100%;
+  border-radius: 5px;
+  background-color: var(--light-gray-bg);
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  display: flex;
+  gap: 10px;
+}
+.login-container {
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: var(--light-gray-bg);
+}
+
+.login-logo {
+  /* background-color: red; */
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-name {
+  margin-left: 10px;
+}
+
+.logo-name p {
+  font-family: var(--header-font);
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+.login-main-right {
+  /* background-color: red; */
+  flex: 1;
+}
+.login-main-left {
+  /* background-color: blue; */
+  position: relative; /* Allows absolute positioning for logo */
+  padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Perfectly centers vertically */
+  align-items: center; /* Perfectly centers horizontally */
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.login-form {
+  /* background-color: purple; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.login-form-content {
+  /* background-color: yellow; */
+  width: 100%;
+  max-width: 400px;
+}
+.login-form-header p {
+  font-family: var(--body-font);
+  line-height: 0.4;
+}
+.login-form-header p:nth-child(2) {
+  font-size: 1.4rem;
+  font-weight: bolder;
+}
+.login-form-header p:nth-child(1) {
+  font-size: 0.8rem;
+  color: rgb(79, 79, 79);
+}
+.login-fields {
+  margin-top: 24px;
+}
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.custom-input {
+  font-family: var(--body-font);
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  color: gray;
+}
+.custom-input:focus {
+  /* Primary Blue */
+  /* box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); */
+  border: 2px solid #25a9eb;
+}
+.custom-label {
+  font-family: var(--body-font);
+  position: absolute;
+  left: 12px;
+  top: 24px;
+  transform: translateY(-50%);
+  padding: 0 6px;
+  font-size: 0.95rem;
+  color: #64748b;
+  background-color: var(--white-bg, #ffffff); /* Matches your form background */
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+.custom-input:focus ~ .custom-label,
+.custom-input:not(:placeholder-shown) ~ .custom-label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.75rem; /* Smaller font */
+  font-weight: 600;
+  color: #25a9eb; /* Blue color on focus */
+}
+.register-form-content .custom-label {
+  top: 21px; /* 👈 Exact center for 12px padding inputs */
+}
+.register-form-content .custom-input:focus ~ .custom-label,
+.register-form-content .custom-input:not(:placeholder-shown) ~ .custom-label {
+  top: 0;
+}
+
+.login-btn button {
+  width: 100%;
+  padding: 14px 16px;
+  cursor: pointer;
+  background-color: #2592eb;
+  border: 0;
+  color: var(--white-bg);
+  font-size: 1.1rem;
+  border-radius: 4px;
+}
+.login-btn button:hover {
+  background-color: #2180ce;
+}
+.login-btn button:active {
+  background-color: #2592eb;
+}
+.signin-with-text p {
+  text-align: center;
+  color: gray;
+}
+.signin-with-text {
+  border-top: 1px solid rgb(227, 227, 227);
+  margin-top: 30px;
+}
+.other-signin-btns {
+  /* background-color: green; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.other-btn {
+  width: 25px;
+  height: 25px;
+  padding: 10px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  background-color: var(--white-bg);
+}
+.other-btn img {
+  width: 100%;
+  height: 100%;
+}
+.signup-forgot-pass-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+.auth-link {
+  color: #2181cf;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  font-family: var(--body-font);
+  font-size: 0.7rem;
+}
+.auth-link:hover {
+  text-decoration: underline;
+  color: #1d72b8;
+}
+.hotel-image {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: contain;
+  border-radius: 5px;
+}
+.register-form-content {
+  max-width: 440px;
+}
+/* 2. Reduces top margin so it doesn't push down */
+.register-form-content .login-fields {
+  margin-top: 18px;
+}
+/* 3. Creates the 2-column side-by-side row */
+.register-form-content .input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+/* 4. Compact vertical spacing between input fields */
+.register-form-content .input-group {
+  margin-bottom: 16px;
+}
+/* 5. Slightly slimmer inputs for the register form */
+.register-form-content .custom-input {
+  padding: 12px 14px;
+}
+.error-msg {
+  display: block;
+  font-size: 0.72rem; /* Compact 11.5px */
+  color: #ef4444; /* Red */
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 4px;
+  margin-left: 2px;
+  word-break: break-word; /* 👈 Wraps inside its own column safely */
+}
+/* 3. (Optional) Turn the input border red when there is an error */
+.input-group:has(.error-msg:not(:empty)) .custom-input {
+  border-color: #ef4444;
+}
+.input-group:has(.error-msg:not(:empty)) .custom-label {
+  color: #ef4444;
+}
+.error-msg:empty {
+  display: none;
+}
+.password-rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 6px;
+  margin-top: 6px;
+  font-size: 0.68rem;
+}
+.password-rules .invalid {
+  color: #94a3b8; /* Dim Gray for unmet rules */
+}
+.password-rules .valid {
+  color: #10b981; /* Green for met rules */
+  font-weight: 600;
+}

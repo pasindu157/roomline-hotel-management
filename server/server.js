@@ -1,14 +1,43 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv/config";
+import "dotenv/config";
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
+import session from "express-session";
+import authRouter from "./route/authRoute.js";
+
+const MONGO_URI = process.env.MONGO_URI;
 
 //middleware
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      CollectionName: "sessions",
+      ttl: 24 * 60 * 60,
+    }),
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+    name: "hotel.sid",
+  }),
+);
 
-const MONGO_URI = process.env.MONGO_URI;
+app.use("/api/v1/", authRouter);
 
 mongoose
   .connect(MONGO_URI)
