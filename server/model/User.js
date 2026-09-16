@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Hotel",
       required: function () {
-        return this.role !== "customer";
+        return ["manager", "front_desk", "housekeeping"].includes(this.role);
       },
     },
     isActive: {
