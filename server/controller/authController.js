@@ -1,5 +1,6 @@
 //register function
-import { sendVerificationMail } from "../middleware/mailer.js";
+import { userRedirectHTML } from "../data.js";
+import { sendVerificationMail, verifyEmail } from "../middleware/mailer.js";
 import User from "../model/User.js";
 import { userValidator } from "../validations/userAuthValidator.js";
 import bcrypt from "bcryptjs";
@@ -83,86 +84,6 @@ export const register = async (req, res) => {
   } catch (error) {
     console.error("register error", error);
     return res.status(500).json({ errorMsg: "Something went wrong" });
-  }
-};
-
-//verify email function
-export const verifyEmail = async (req, res) => {
-  try {
-    const { email } = req.query;
-    const emailExists = await User.findOne({ email });
-
-    if (!emailExists) {
-      return res.status(404).json({ errorMsg: "User does not exists!" });
-    }
-    if (emailExists.isEmailVerified === true) {
-      return res.status(200).json({ success: "User is already verified!" });
-    }
-    if (
-      emailExists.emailVerificationExpires &&
-      emailExists.emailVerificationExpires < new Date()
-    ) {
-      return res.status(400).json({
-        errorMsg:
-          "Verification link has expired. Please register or request a new link",
-      });
-    }
-
-    emailExists.isEmailVerified = true;
-    emailExists.emailVerificationExpires = undefined;
-    await emailExists.save();
-
-    return res.send(`
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <!-- Automatically redirects to login after 3 seconds -->
-      <meta http-equiv="refresh" content="3;url=http://localhost:5173/login" />
-      <style>
-        body {
-          font-family: 'Segoe UI', Tahoma, sans-serif;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          background-color: #f1f5f9;
-          margin: 0;
-        }
-        .card {
-          background: white;
-          padding: 40px;
-          border-radius: 12px;
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-          text-align: center;
-          max-width: 420px;
-        }
-        h1 { color: #10b981; font-size: 24px; margin-bottom: 12px; }
-        p { color: #64748b; font-size: 15px; margin-bottom: 24px; line-height: 1.5; }
-        .btn {
-          background-color: #2563eb;
-          color: white;
-          padding: 12px 28px;
-          border-radius: 6px;
-          text-decoration: none;
-          font-weight: 600;
-          display: inline-block;
-          transition: background-color 0.2s;
-        }
-        .btn:hover { background-color: #1d4ed8; }
-      </style>
-    </head>
-    <body>
-      <div class="card">
-        <h1>✓ Email Verified!</h1>
-        <p>Your email has been verified successfully. Redirecting you to the sign-in page in 3 seconds...</p>
-        <a href="http://localhost:5173/login" class="btn">Go to Sign In</a>
-      </div>
-    </body>
-  </html>
-`);
-  } catch (error) {
-    console.log("error occured in verifying email", error);
-    return res.status(500).json({ errorMsg: "Internal server error" });
   }
 };
 
