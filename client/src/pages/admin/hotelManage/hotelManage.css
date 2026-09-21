@@ -168,22 +168,8 @@
   justify-content: space-between;
   gap: 10px;
 }
-.btn-manage {
-  flex: 1;
-  background-color: #2563eb;
-  color: #ffffff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.btn-manage:hover {
-  background-color: #1d4ed8;
-}
-.btn-icon {
+.btn-delete {
+  color: red;
   background: white;
   border: 1px solid #e2e8f0;
   padding: 6px 10px;
@@ -191,6 +177,31 @@
   cursor: pointer;
   transition: background 0.2s ease;
 }
+.btn-delete:hover {
+  background-color: #f1f5f9;
+}
+
+.btn-icon {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: rgb(0, 91, 165);
+}
 .btn-icon:hover {
+  background-color: #f1f5f9;
+}
+.btn-info {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: rgb(0, 146, 68);
+}
+.btn-info:hover {
   background-color: #f1f5f9;
 }
