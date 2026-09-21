@@ -8,10 +8,17 @@ import {
   updateHotelDetails,
 } from "../controller/hotelController.js";
 import { verifyHotelEmail } from "../middleware/mailer.js";
+import { upload } from "../middleware/upload.js";
 
 const hotelRouter = express.Router();
 
-hotelRouter.post("/create", requireAuth, requireRole("admin"), createHotel);
+hotelRouter.post(
+  "/create",
+  requireAuth,
+  requireRole("admin"),
+  upload.single("coverImage"),
+  createHotel,
+);
 hotelRouter.get("/verify-email", verifyHotelEmail);
 hotelRouter.get(
   "/get-all",

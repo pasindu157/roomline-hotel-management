@@ -4,6 +4,8 @@ import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { HotelManage } from "./pages/admin/hotelManage/HotelManage";
 import { AdminLayout } from "./layouts/AdminLayout";
 import { AdminDashboard } from "./pages/admin/adminDashboard/AdminDashboard";
+import HotelEditForm from "./components/hotelEditForm/HotelEditForm";
+import HotelAdd from "./components/hotelAddForm/HotelAdd";
 
 const Home = () => <h1>customer home page</h1>;
 const ManagerDashboard = () => <h1>Manager dashboard</h1>;
@@ -52,6 +54,8 @@ const App = () => {
       >
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/hotel-manage" element={<HotelManage />} />
+        <Route path="/admin/hotel-edit" element={<HotelEditForm />} />
+        <Route path="/admin/add-hotel" element={<HotelAdd />} />
       </Route>
 
       {/* 🔒 MANAGERS only */}

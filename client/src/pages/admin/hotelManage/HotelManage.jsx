@@ -3,9 +3,11 @@ import { Header } from "../../../components/header/Header.jsx";
 import { useEffect, useState } from "react";
 import { deleteHotel, getAllHotels } from "../../../api/hotelApi.js";
 import { HotelCards } from "../../../components/sideBar/hotelCards/HotelCards.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const HotelManage = () => {
   const [hotels, setHotels] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHotels = async () => {
@@ -15,7 +17,7 @@ export const HotelManage = () => {
           const result = response.data.data;
           const hotelList = [];
           for (let i = 0; i < result.length; i++) {
-            if (result[i].isActive && result[i].status === "active") {
+            if (result[i].isActive) {
               hotelList.push(result[i]);
             }
           }
@@ -38,7 +40,15 @@ export const HotelManage = () => {
             <p>You have total of {hotels.length} Hotels</p>
           </div>
           <div style={{ gridColumn: "2/3", justifySelf: "end" }}>
-            <button className="add-hotel-btn">+</button>
+            <button
+              className="add-hotel-btn"
+              title="Add Hotel"
+              onClick={() => {
+                navigate("/admin/add-hotel");
+              }}
+            >
+              +
+            </button>
           </div>
         </div>
         <div className="hotel-details">
