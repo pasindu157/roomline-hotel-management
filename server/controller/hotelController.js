@@ -4,9 +4,20 @@ import { hotelDetailValidate } from "../validations/hotelDetailValidator.js";
 //create hotel
 export const createHotel = async (req, res) => {
   try {
-    const { name, email, phone, address, description, coverImage } = req.body;
+    const { name, email, phone, address, description } = req.body;
 
     const ownerId = req.session.userId;
+
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Cover image is required",
+      });
+    }
+
+    const coverImage = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    const parsedAddress =
+      typeof address === "string" ? JSON.parse(address) : address;
 
     if (!ownerId) {
       return res.status(401).json({
@@ -19,10 +30,10 @@ export const createHotel = async (req, res) => {
       !name?.trim() ||
       !email?.trim() ||
       !phone?.trim() ||
-      !address.street?.trim() ||
-      !address.city?.trim() ||
-      !address.country?.trim() ||
-      !address.postalCode?.trim() ||
+      !parsedAddress?.street?.trim() ||
+      !parsedAddress?.city?.trim() ||
+      !parsedAddress?.country?.trim() ||
+      !parsedAddress?.postalCode?.trim() ||
       !description?.trim() ||
       !coverImage?.trim()
     ) {
@@ -36,7 +47,7 @@ export const createHotel = async (req, res) => {
       name,
       email,
       phone,
-      address,
+      address: parsedAddress,
       description,
       coverImage,
     };
@@ -49,7 +60,6 @@ export const createHotel = async (req, res) => {
         console.log(validateResults[i]);
       }
       return res.status(422).json({
-        errorMsg: "check your details",
         validateData: validateResults,
       });
     }
@@ -59,11 +69,11 @@ export const createHotel = async (req, res) => {
         { name },
         { email: email.toLowerCase() },
         { phone },
-        { "address.street": address.street.trim() },
+        { "address.street": parsedAddress.street.trim() },
       ],
     });
 
-    if (existingHotel) {
+    if (existingHotel && existingHotel.status === "active") {
       return res.status(400).json({
         success: false,
         message: "A hotel already exist from this name,email,phone or street",
@@ -75,10 +85,10 @@ export const createHotel = async (req, res) => {
       email: email.trim(),
       phone: phone.trim(),
       address: {
-        street: address.street,
-        city: address.city.trim(),
-        country: address.country,
-        postalCode: address.postalCode.trim(),
+        street: parsedAddress.street,
+        city: parsedAddress.city.trim(),
+        country: parsedAddress.country,
+        postalCode: parsedAddress.postalCode.trim(),
       },
       description,
       coverImage: coverImage.trim(),
@@ -91,11 +101,10 @@ export const createHotel = async (req, res) => {
     //   console.log("verification email failed", err);
     // });
 
-    await newHotel.save();
-
     return res.status(201).json({
       success: true,
       message: "Hotel registered successfully",
+      data: newHotel,
     });
   } catch (error) {
     console.error("Failed to add hotel details", error);

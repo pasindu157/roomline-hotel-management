@@ -1,0 +1,112 @@
+.add-hotel-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: var(--light-gray-bg);
+  border-radius: 8px;
+}
+.add-hotel-content {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  display: grid;
+  border-radius: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  box-shadow:
+    rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+.hotel-input {
+  /* background-color: green; */
+  width: 100%;
+}
+.hotel-email {
+  grid-column: 1/-1;
+}
+.hotel-coverImage {
+  grid-column: 1/-1;
+}
+.hotel-coverImage input {
+  display: none;
+}
+.browse-label {
+  width: 100%;
+  /* background-color: red; */
+  box-sizing: border-box;
+  height: 45px;
+  /* padding: 0 12px; */
+  border-radius: 8px;
+  margin-top: 5px;
+  outline: none;
+  border: 1px solid rgb(228, 228, 228);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.browse-label label {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.browse-label label:nth-child(1) {
+  grid-column: 1/4;
+  border-radius: 8px 0 0 8px;
+  padding-left: 20px;
+  color: var(--light-gray-font);
+}
+.browse-label label:nth-child(2) {
+  border-radius: 0 8px 8px 0;
+  padding-left: 20px;
+  border-left: 1px solid rgb(228, 228, 228);
+  background-color: rgba(208, 217, 225, 0.39);
+  color: var(--light-gray-font);
+}
+.hotel-description {
+  grid-column: 1/-1;
+}
+.hotel-input input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 0 12px;
+  border-radius: 8px;
+  margin-top: 5px;
+  outline: none;
+  border: 1px solid rgb(228, 228, 228);
+}
+.hotel-input label {
+  font-family: var(--body-font);
+  font-size: 0.9rem;
+}
+.hotel-input textarea {
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid rgb(228, 228, 228);
+}
+.hotel-input input:focus,
+.hotel-input textarea:focus {
+  border: 1px solid rgb(65, 170, 255);
+}
+.hotel-add-btn button {
+  width: 100px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  outline: none;
+  border: 0;
+  background-color: rgb(120, 110, 255);
+  color: white;
+  font-weight: 600;
+}
+.hotel-add-btn button:hover {
+  background-color: rgb(102, 94, 215);
+}
+.hotel-add-btn button:active {
+  background-color: rgb(117, 108, 246);
+}

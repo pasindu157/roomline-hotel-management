@@ -6,8 +6,11 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { deleteHotel } from "../../../api/hotelApi.js";
+import { useNavigate } from "react-router-dom";
 
 export const HotelCards = ({ hotel, hotels, setHotels }) => {
+  const navigate = useNavigate();
+
   const DeleteHotel = async (id) => {
     try {
       const response = await deleteHotel(id);
@@ -76,7 +79,13 @@ export const HotelCards = ({ hotel, hotels, setHotels }) => {
           <FontAwesomeIcon icon={faEye} />
         </button>
         <div className="action-buttons">
-          <button className="btn-icon" title="Edit Hotel">
+          <button
+            className="btn-icon"
+            title="Edit Hotel"
+            onClick={() => {
+              navigate("/admin/hotel-edit");
+            }}
+          >
             <FontAwesomeIcon icon={faEdit} />
           </button>
         </div>
