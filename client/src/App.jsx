@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Login from "./pages/login/Login";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import AdminHome from "./pages/admin/adminHome/AdminHome";
+import { HotelManage } from "./pages/admin/hotelManage/HotelManage";
+import { AdminLayout } from "./layouts/AdminLayout";
+import { AdminDashboard } from "./pages/admin/adminDashboard/AdminDashboard";
 
 const Home = () => <h1>customer home page</h1>;
 const ManagerDashboard = () => <h1>Manager dashboard</h1>;
@@ -42,13 +44,14 @@ const App = () => {
       <Route
         element={
           isAuthenticated && userRole === "admin" ? (
-            <Outlet />
+            <AdminLayout />
           ) : (
             <Navigate to="/login" replace />
           )
         }
       >
-        <Route path="/admin/dashboard" element={<AdminHome />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/hotel-manage" element={<HotelManage />} />
       </Route>
 
       {/* 🔒 MANAGERS only */}

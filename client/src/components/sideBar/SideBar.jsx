@@ -62,11 +62,11 @@ const SideBar = ({ role }) => {
       </div>
       <div className="sidebar-footer">
         <div className="profile-image">
-          {profile?.name[0].toUpperCase() || "Loading..."}
+          {profile?.name[0].toUpperCase() || "U"}
         </div>
         <div className="profile-name">
-          <p>{profile?.name || "Loading..."}</p>
-          <p>{profile?.email || "Loading..."}</p>
+          <p>{profile?.name || "User"}</p>
+          <p>{profile?.email || "user@gmail.com"}</p>
         </div>
         <div className="settings-btn">
           <Link>

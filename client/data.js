@@ -24,7 +24,7 @@ export const roleMenus = {
     {
       id: 3,
       title: "Hotels management",
-      url: "/admin/hotel",
+      url: "/admin/hotel-manage",
       icon: faHotel,
     },
     {

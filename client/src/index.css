@@ -1,14 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
   --light-gray-bg: rgb(231, 231, 231);
   --white-bg: rgb(255, 255, 255);
-  --light-gray-font:rgb(99, 99, 99);
+  --light-gray-font: rgb(99, 99, 99);
+  --dark-blue-font: rgb(29, 57, 73);
 
   --header-font: "Playfair Display";
   --body-font: "Inter";
