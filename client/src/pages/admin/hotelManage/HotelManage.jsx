@@ -1,13 +1,8 @@
 import "./hotelManage.css";
 import { Header } from "../../../components/header/Header.jsx";
 import { useEffect, useState } from "react";
-import { getAllHotels } from "../../../api/hotelApi.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faLocation,
-  faMarker,
-} from "@fortawesome/free-solid-svg-icons";
+import { deleteHotel, getAllHotels } from "../../../api/hotelApi.js";
+import { HotelCards } from "../../../components/sideBar/hotelCards/HotelCards.jsx";
 
 export const HotelManage = () => {
   const [hotels, setHotels] = useState([]);
@@ -50,62 +45,11 @@ export const HotelManage = () => {
           <div className="hotel-cards-content">
             {hotels.length > 0 ? (
               hotels.map((hotel) => (
-                <div className="hotel-card" key={hotel._id}>
-                  {/* 1. Image & Floating Badges */}
-                  <div className="hotel-card-image-wrap">
-                    <img
-                      src={hotel.coverImage}
-                      alt={hotel.name}
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="badge-group">
-                      <span className={`status-badge ${hotel.status}`}>
-                        {hotel.status}
-                      </span>
-                      {!hotel.isEmailVerified && (
-                        <span className="unverified-badge">Unverified</span>
-                      )}
-                    </div>
-                  </div>
-                  {/* 2. Hotel Details */}
-                  <div className="hotel-card-body">
-                    <h3 className="hotel-name">{hotel.name}</h3>
-                    <p className="hotel-location">
-                      <span>
-                        <FontAwesomeIcon icon={faLocation} />
-                      </span>{" "}
-                      {hotel.address?.city}, {hotel.address?.country}
-                    </p>
-                    <div className="hotel-meta-grid">
-                      <div className="meta-item">
-                        <span className="meta-label">Phone:</span>
-                        <span className="meta-value">{hotel.phone}</span>
-                      </div>
-                      <div className="meta-item">
-                        <span className="meta-label">Currency:</span>
-                        <span className="meta-value">{hotel.currency}</span>
-                      </div>
-                      <div className="meta-item">
-                        <span className="meta-label">Check In/Out:</span>
-                        <span className="meta-value">
-                          {hotel.checkInTime} - {hotel.checkOutTime}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* 3. Action Footer */}
-                  <div className="hotel-card-footer">
-                    <button className="btn-manage">Manage Hotel</button>
-                    <div className="action-buttons">
-                      <button className="btn-icon" title="Edit Hotel">
-                        <FontAwesomeIcon
-                          icon={faEdit}
-                          style={{ color: "var(--dark-blue-font)" }}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <HotelCards
+                  hotel={hotel}
+                  hotels={hotels}
+                  setHotels={setHotels}
+                />
               ))
             ) : (
               <p>No Data</p>
