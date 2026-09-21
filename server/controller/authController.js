@@ -124,6 +124,7 @@ export const login = async (req, res) => {
     req.session.userId = userExists._id;
     req.session.role = userExists.role;
     req.session.hotelId = userExists.hotelId || null;
+    req.session.name = userExists.name;
 
     //update lastLoginAt attibute in database
     userExists.lastLoginAt = new Date();

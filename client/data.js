@@ -5,13 +5,11 @@ import {
   faBed,
   faBellConcierge,
   faUsers,
-  faUserTie,
   faBook,
   faBroom,
   faRankingStar,
   faMoneyCheckDollar,
   faBell,
-  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const roleMenus = {
@@ -43,51 +41,39 @@ export const roleMenus = {
     },
     {
       id: 6,
-      title: "staff management",
-      url: "/admin/hotel",
-      icon: faUserTie,
-    },
-    {
-      id: 7,
-      title: "Customer management",
+      title: "User management",
       url: "/admin/hotel",
       icon: faUsers,
     },
     {
-      id: 8,
+      id: 7,
       title: "Bookings management",
       url: "/admin/hotel",
       icon: faBook,
     },
     {
-      id: 9,
+      id: 8,
       title: "HouseKeeping Monitor",
       url: "/admin/hotel",
       icon: faBroom,
     },
     {
-      id: 10,
+      id: 9,
       title: "Reviews & Ratings",
       url: "/admin/hotel",
       icon: faRankingStar,
     },
     {
-      id: 11,
+      id: 10,
       title: "Transactions & Invoices",
       url: "/admin/hotel",
       icon: faMoneyCheckDollar,
     },
     {
-      id: 12,
+      id: 11,
       title: "Notifications",
       url: "/admin/hotel",
       icon: faBell,
-    },
-    {
-      id: 13,
-      title: "Platform Settings",
-      url: "/admin/hotel",
-      icon: faGear,
     },
   ],
   manager: [

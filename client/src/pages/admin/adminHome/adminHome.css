@@ -1,0 +1,8 @@
+.admin-container {
+  display: flex;
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: var(--light-gray-bg, #f6fbff);
+  overflow: hidden;
+}
