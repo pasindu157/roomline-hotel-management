@@ -64,3 +64,42 @@ export const addHotel = async (formData, onSuccess) => {
     throw error;
   }
 };
+
+//update hotel
+export const updateHotel = async (formData, id, onSuccess) => {
+  try {
+    const response = await api.put(`/hotel/update/${id}`, formData);
+    if (response.data.success) {
+      toast.success(response.data.message);
+      if (onSuccess) onSuccess();
+      return response.data;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    const errorMsg =
+      error?.response?.data?.message ||
+      "Updating hotel details occurs an error";
+    toast.error(errorMsg);
+    console.error("adding hotel error", error);
+    throw error;
+  }
+};
+
+//get hotel by hotel id
+export const getHotelByHotelId = async (id) => {
+  try {
+    const response = await api.get(`hotel/get-hotel/${id}`);
+    if (response.data.success) {
+      return response.data;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    const errorMsg = error.response?.data?.message || "Failed to load data";
+
+    toast.error(errorMsg);
+    console.error("loading data error", error);
+    throw error;
+  }
+};

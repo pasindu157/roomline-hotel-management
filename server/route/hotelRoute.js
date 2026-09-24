@@ -5,6 +5,7 @@ import {
   createHotel,
   deleteHotel,
   getAllHotelsByUserId,
+  getHotelByHotelId,
   updateHotelDetails,
 } from "../controller/hotelController.js";
 import { verifyHotelEmail } from "../middleware/mailer.js";
@@ -30,8 +31,21 @@ hotelRouter.put(
   "/update/:id",
   requireAuth,
   requireRole("admin"),
+  upload.single("coverImage"),
   updateHotelDetails,
 );
-hotelRouter.put("/delete/:id", requireAuth, requireRole("admin"), deleteHotel);
+hotelRouter.put(
+  "/delete/:id",
+  requireAuth,
+  requireRole("admin"),
+  deleteHotel,
+);
+hotelRouter.get(
+  "/get-hotel/:id",
+  requireAuth,
+  requireRole("admin"),
+
+  getHotelByHotelId,
+);
 
 export default hotelRouter;

@@ -1,0 +1,132 @@
+.hotel-edit-container {
+  background-color: var(--light-gray-bg);
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hotel-edit-main {
+  /* width: 500px; */
+  max-width: 850px;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.hotel-edit-main form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+.hotel-cover-image {
+  grid-column: 2/4;
+}
+.hotel-amenities,
+.hotel-edit-description {
+  grid-column: 1/-1;
+}
+.hotel-input-group {
+  /* background-color: red; */
+  font-family: var(--body-font);
+  font-size: 0.8rem;
+}
+.hotel-input-group input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 45px;
+  margin-top: 5px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 0px 10px;
+}
+.hotel-input-group textarea {
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 0px 10px;
+  height: 100px;
+  box-sizing: border-box;
+}
+.hotel-input-group select {
+  height: 45px;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 0px 10px;
+}
+.hotel-status input {
+  display: none;
+}
+/* .hotel-status label {
+  border: 1px solid;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.hotel-status div {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+} */
+.hotel-input-group input:focus,
+.hotel-input-group textarea:focus {
+  border: 1px solid rgb(65, 170, 255);
+}
+.amenities-box {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 5px;
+  grid-gap: 5px;
+}
+.amenity-item {
+  border: 1px solid rgb(176, 176, 176);
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(165, 165, 165);
+  gap: 10px;
+}
+.amenities-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.amenity-add-btn {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--submit-button-bg);
+  color: white;
+  padding: 0px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  user-select: none;
+}
+.amenity-add-btn:hover {
+  background-color: rgb(102, 94, 215);
+}
+.amenity-add-btn:active {
+  background-color: rgb(117, 108, 246);
+}
+.amenity-item.selected {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+.checkmark {
+  color: #2563eb;
+  font-weight: bold;
+}
