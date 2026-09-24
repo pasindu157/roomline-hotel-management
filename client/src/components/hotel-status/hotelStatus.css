@@ -1,0 +1,124 @@
+.status-radio-container {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.status-heading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* 3 Cards Grid */
+.status-radio-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Individual Radio Card */
+.status-radio-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.status-radio-card:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* Custom styled native radio button */
+.status-radio-card input[type="radio"] {
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: #2563eb;
+  width: 16px;
+  height: 16px;
+}
+
+.status-radio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.status-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* 🟢 Active Card */
+.status-radio-card.active .status-dot {
+  background-color: #16a34a;
+}
+.status-radio-card.active input[type="radio"] {
+  accent-color: #16a34a;
+}
+.status-radio-card.active.checked {
+  border-color: #16a34a;
+  background-color: #f0fdf4;
+}
+.status-radio-card.active.checked .status-name {
+  color: #15803d;
+}
+
+/* 🟡 Suspended Card */
+.status-radio-card.suspended .status-dot {
+  background-color: #d97706;
+}
+.status-radio-card.suspended input[type="radio"] {
+  accent-color: #d97706;
+}
+.status-radio-card.suspended.checked {
+  border-color: #d97706;
+  background-color: #fffbeb;
+}
+.status-radio-card.suspended.checked .status-name {
+  color: #b45309;
+}
+
+/* 🔴 Closed Card */
+.status-radio-card.closed .status-dot {
+  background-color: #dc2626;
+}
+.status-radio-card.closed input[type="radio"] {
+  accent-color: #dc2626;
+}
+.status-radio-card.closed.checked {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+.status-radio-card.closed.checked .status-name {
+  color: #b91c1c;
+}

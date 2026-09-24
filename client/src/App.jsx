@@ -54,7 +54,7 @@ const App = () => {
       >
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/hotel-manage" element={<HotelManage />} />
-        <Route path="/admin/hotel-edit" element={<HotelEditForm />} />
+        <Route path="/admin/hotel-edit/:id" element={<HotelEditForm />} />
         <Route path="/admin/add-hotel" element={<HotelAdd />} />
       </Route>
 

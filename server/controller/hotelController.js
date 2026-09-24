@@ -73,7 +73,7 @@ export const createHotel = async (req, res) => {
       ],
     });
 
-    if (existingHotel && existingHotel.status === "active") {
+    if (existingHotel && existingHotel.isActive === true) {
       return res.status(400).json({
         success: false,
         message: "A hotel already exist from this name,email,phone or street",
@@ -96,6 +96,7 @@ export const createHotel = async (req, res) => {
       emailVerificationExpires: new Date(Date.now() + 24 * 60 * 60 * 1000),
     });
 
+    //todo:add send verification email function
     //send verification mail
     // sendVerificationMail(newHotel.email).catch((err) => {
     //   console.log("verification email failed", err);
@@ -161,13 +162,20 @@ export const updateHotelDetails = async (req, res) => {
       phone,
       address,
       description,
-      coverImage,
       amenities,
       checkInTime,
       checkOutTime,
       status,
       currency,
     } = req.body;
+
+    let coverImage;
+    if (req.file) {
+      coverImage = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
+    const parsedAddress =
+      typeof address === "string" ? JSON.parse(address) : address;
 
     if (!userId) {
       return res.status(401).json({
@@ -180,7 +188,7 @@ export const updateHotelDetails = async (req, res) => {
       name,
       email,
       phone,
-      address,
+      address: parsedAddress,
       description,
       coverImage,
     };
@@ -217,16 +225,18 @@ export const updateHotelDetails = async (req, res) => {
     if (status) hotel.status = status;
     if (currency) hotel.currency = currency.toUpperCase().trim();
 
-    if (address) {
-      if (address.street) hotel.address.street = address.street.trim();
-      if (address.city) hotel.address.city = address.city.trim();
-      if (address.country) hotel.address.country = address.country.trim();
-      if (address.postalCode)
-        hotel.address.postalCode = address.postalCode.trim();
+    if (parsedAddress) {
+      if (parsedAddress.street)
+        hotel.address.street = parsedAddress.street.trim();
+      if (parsedAddress.city) hotel.address.city = parsedAddress.city.trim();
+      if (parsedAddress.country)
+        hotel.address.country = parsedAddress.country.trim();
+      if (parsedAddress.postalCode)
+        hotel.address.postalCode = parsedAddress.postalCode.trim();
     }
 
-    if (Array.isArray(amenities)) {
-      hotel.amenities = amenities;
+    if (req.body.amenities) {
+      hotel.amenities = req.body.amenities.split(",");
     }
 
     await hotel.save();
@@ -275,6 +285,40 @@ export const deleteHotel = async (req, res) => {
     return res.status(200).json({
       success: true,
       data: deletedHotel,
+    });
+  } catch (error) {
+    console.error("Error deleting Hotel", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+//get hotel details by hotel id
+export const getHotelByHotelId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.session?.userId;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Please Sign in",
+      });
+    }
+
+    const hotel = await Hotel.findOne({ _id: id });
+
+    if (!hotel) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: hotel,
     });
   } catch (error) {
     console.error("Error deleting Hotel", error);

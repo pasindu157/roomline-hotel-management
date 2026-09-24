@@ -13,15 +13,18 @@ export const HotelCards = ({ hotel, hotels, setHotels }) => {
 
   const DeleteHotel = async (id) => {
     try {
-      const response = await deleteHotel(id);
-      if (response?.data?.success) {
-        const hotelList = [];
-        for (let i = 0; i < hotels.length; i++) {
-          if (hotels[i]._id !== id) {
-            hotelList.push(hotels[i]);
+      const deleteChoice = confirm("Ary you sure you want to delete this?");
+      if (deleteChoice) {
+        const response = await deleteHotel(id);
+        if (response?.data?.success) {
+          const hotelList = [];
+          for (let i = 0; i < hotels.length; i++) {
+            if (hotels[i]._id !== id) {
+              hotelList.push(hotels[i]);
+            }
           }
+          setHotels(hotelList);
         }
-        setHotels(hotelList);
       }
     } catch (error) {
       console.error(error);
@@ -83,7 +86,7 @@ export const HotelCards = ({ hotel, hotels, setHotels }) => {
             className="btn-icon"
             title="Edit Hotel"
             onClick={() => {
-              navigate("/admin/hotel-edit");
+              navigate(`/admin/hotel-edit/${hotel._id}`);
             }}
           >
             <FontAwesomeIcon icon={faEdit} />

@@ -10,11 +10,25 @@ import {
   faRankingStar,
   faMoneyCheckDollar,
   faBell,
+  faWifi,
+  faWaterLadder,
+  faSnowflake,
+  faSquareParking,
+  faUtensils,
+  faDumbbell,
+  faSpa,
+  faTv,
 } from "@fortawesome/free-solid-svg-icons";
+// import { LayoutDashboard } from "lucide-react";
 
 export const roleMenus = {
   admin: [
-    { id: 1, title: "Dashboard", url: "/admin/dashboard", icon: faGaugeHigh },
+    {
+      id: 1,
+      title: "Dashboard",
+      url: "/admin/dashboard",
+      icon: faGaugeHigh,
+    },
     {
       id: 2,
       title: "Analytics & Reports",
@@ -88,3 +102,38 @@ export const roleMenus = {
     },
   ],
 };
+
+export const STATUS_OPTIONS = [
+  {
+    id: "status-active",
+    value: "active",
+    label: "Active",
+    desc: "Open & accepting bookings",
+    colorClass: "active",
+  },
+  {
+    id: "status-suspended",
+    value: "suspended",
+    label: "Suspended",
+    desc: "Paused / maintenance",
+    colorClass: "suspended",
+  },
+  {
+    id: "status-closed",
+    value: "closed",
+    label: "Closed",
+    desc: "Temporarily or permanently shut",
+    colorClass: "closed",
+  },
+];
+
+export const amenities = [
+  { name: "Free Wi-Fi" },
+  { name: "Swimming Pool" },
+  { name: "Air Conditioning" },
+  { name: "Free Parking" },
+  { name: "Restaurant" },
+  { name: "Gym" },
+  { name: "Spa" },
+  { name: "Smart TV" },
+];
