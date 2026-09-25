@@ -1,0 +1,39 @@
+.room-manage-container {
+  height: 100%;
+  box-sizing: border-box;
+  background-color: var(--light-gray-bg);
+  border-radius: 8px;
+  padding: 20px;
+}
+.room-manage-header {
+  /* background-color: red; */
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+}
+.room-manage-header p {
+  margin: 0;
+}
+.room-manage-header p:nth-child(1) {
+  font-family: var(--body-font);
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: var(--dark-blue-font);
+}
+.room-manage-header p:nth-child(2) {
+  margin-top: 5px;
+  font-family: var(--body-font);
+  font-size: 0.8rem;
+  color: var(--light-gray-font);
+}
+.room-manage-header-text {
+  /* background-color: red; */
+}
+.room-manage-add-room-btn {
+  /* background-color: green; */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
