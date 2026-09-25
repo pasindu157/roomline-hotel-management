@@ -8,6 +8,7 @@ import authRouter from "./route/authRoute.js";
 import hotelRouter from "./route/hotelRoute.js";
 import userRouter from "./route/userRoute.js";
 import path from "node:path";
+import roomRouter from "./route/roomRoute.js";
 
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -44,6 +45,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/v1/", authRouter);
 app.use("/api/v1/hotel", hotelRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/room", roomRouter);
 
 mongoose
   .connect(MONGO_URI)

@@ -1,5 +1,4 @@
 //register function
-import { userRedirectHTML } from "../data.js";
 import { sendVerificationMail, verifyEmail } from "../middleware/mailer.js";
 import User from "../model/User.js";
 import { userValidator } from "../validations/userAuthValidator.js";

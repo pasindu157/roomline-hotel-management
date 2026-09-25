@@ -10,14 +10,6 @@ import {
   faRankingStar,
   faMoneyCheckDollar,
   faBell,
-  faWifi,
-  faWaterLadder,
-  faSnowflake,
-  faSquareParking,
-  faUtensils,
-  faDumbbell,
-  faSpa,
-  faTv,
 } from "@fortawesome/free-solid-svg-icons";
 // import { LayoutDashboard } from "lucide-react";
 
@@ -44,7 +36,7 @@ export const roleMenus = {
     {
       id: 4,
       title: "Room management",
-      url: "/admin/hotel",
+      url: "/admin/room-manage",
       icon: faBed,
     },
     {
