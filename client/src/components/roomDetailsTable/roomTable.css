@@ -1,0 +1,171 @@
+.room-manage-table-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-top: 15px;
+  box-sizing: border-box; /* 👈 Prevents box overflow */
+  overflow: hidden;
+}
+/* Optional top actions bar (search / filter / bulk selection) */
+.room-manage-table-actions-bar {
+  padding: 14px 20px;
+  background-color: #fafbfc;
+  border-bottom: 1px solid #edf2f7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--body-font);
+  font-size: 0.9rem;
+  color: #475569;
+}
+/* Responsive Table Wrapper */
+.room-manage-table {
+  width: 100%;
+  box-sizing: border-box;
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--body-font);
+  text-align: left;
+}
+/* Table Header */
+thead th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+  position: sticky;
+}
+/* Table Body Rows */
+tbody td {
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+tbody tr:hover {
+  background-color: #f8fafc;
+}
+/* Checkbox Column */
+td input[type="checkbox"],
+thead input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+/* Room Number & Price Emphasis */
+.room-no {
+  font-weight: 700;
+  color: #0f172a;
+}
+.room-price {
+  font-weight: 600;
+  color: #0f172a;
+}
+/* ================= STATUS PILLS ================= */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status-badge.available {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.status-badge.booked,
+.status-badge.occupied {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+.status-badge.maintenance {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+/* Cleanliness Status */
+.clean-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.clean-badge.clean {
+  background-color: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+.clean-badge.dirty {
+  background-color: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+.clean-badge.in_progress {
+  background-color: #faf5ff;
+  color: #9333ea;
+  border: 1px solid #e9d5ff;
+}
+/* ================= ACTIONS BUTTONS ================= */
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-action {
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-action.btn-view {
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+.btn-action.btn-view:hover {
+  background-color: #eff6ff;
+}
+.btn-action.btn-edit {
+  color: #475569;
+}
+.btn-action.btn-edit:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+.btn-action.btn-delete {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+.btn-action.btn-delete:hover {
+  background-color: #fef2f2;
+}
+/* Optional: Sleek modern scrollbar */
+.room-manage-table::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.room-manage-table::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
