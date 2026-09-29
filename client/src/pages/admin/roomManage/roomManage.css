@@ -1,17 +1,17 @@
 .room-manage-container {
   height: 100%;
   box-sizing: border-box;
-  background-color: var(--light-gray-bg);
+  background-color: #f1f5f9;
   border-radius: 8px;
   padding: 20px;
+  overflow: hidden;
 }
 .room-manage-header {
-  /* background-color: red; */
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
-  padding: 10px;
+  padding: 10px 0;
 }
 .room-manage-header p {
   margin: 0;
@@ -25,15 +25,55 @@
 .room-manage-header p:nth-child(2) {
   margin-top: 5px;
   font-family: var(--body-font);
-  font-size: 0.8rem;
-  color: var(--light-gray-font);
-}
-.room-manage-header-text {
-  /* background-color: red; */
+  font-size: 0.85rem;
+  color: #64748b;
 }
 .room-manage-add-room-btn {
-  /* background-color: green; */
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
+}
+/* ================= HOTEL SELECT DROPDOWN ================= */
+.room-manage-table-actions-bar select {
+  font-family: var(--body-font);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1e293b;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 36px 8px 14px;
+  cursor: pointer;
+  outline: none;
+  min-width: 200px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* Modern custom dropdown arrow (replaces browser default) */
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+/* Hover & Focus states */
+.room-manage-table-actions-bar select:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+.room-manage-table-actions-bar select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background-color: #ffffff;
+}
+
+/* Option items */
+.room-manage-table-actions-bar select option {
+  padding: 10px;
+  font-size: 0.88rem;
+  color: #1e293b;
+  background-color: #ffffff;
 }
