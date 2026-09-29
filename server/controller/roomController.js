@@ -4,17 +4,17 @@ import Room from "../model/Room.js";
 export const bulkRoomCreate = async (req, res) => {
   try {
     const {
-      hotelId,
-      roomNumbers,//
-      floor,//
-      roomType,//
-      bedType,//
-      numberOfBeds,//
-      adults,//
-      children,//
-      pricePerNight,//
-      amenities,//
-      description,//
+      hotelId, //
+      roomNumbers, //
+      floor, //
+      roomType, //
+      bedType, //
+      numberOfBeds, //
+      adults, //
+      children, //
+      pricePerNight, //
+      amenities, //
+      description, //
     } = req.body;
 
     const userId = req.session?.userId;
@@ -53,6 +53,13 @@ export const bulkRoomCreate = async (req, res) => {
           .map((a) => a.trim())
           .filter(Boolean)
       : [];
+
+    if (imageUrls.lenght > 5) {
+      return res.status(400).json({
+        success: false,
+        message: "You can only send 5 images",
+      });
+    }
 
     const roomToInsert = parsedRoomNumbers.map((roomNumber) => ({
       hotelId,

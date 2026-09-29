@@ -23,7 +23,7 @@
 .room-manage-table {
   width: 100%;
   box-sizing: border-box;
-  max-height: calc(100vh - 280px);
+  max-height: calc(100vh - 310px);
   overflow-y: auto;
   overflow-x: auto;
 }
