@@ -1,0 +1,78 @@
+.add-room-container {
+  background-color: var(--light-gray-bg);
+  border-radius: 8px;
+  /* height: 100vh; */
+  box-sizing: border-box;
+  /* overflow: hidden; */
+  padding: 20px;
+  font-family: var(--body-font);
+}
+.add-room-container p {
+  margin: 0;
+}
+.add-room-header p:nth-child(1) {
+  font-family: var(--body-font);
+  color: var(--dark-blue-font);
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.add-room-header p:nth-child(2) {
+  font-family: var(--body-font);
+  color: var(--light-gray-font);
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+.add-room-form-main {
+  /* background-color: red;s */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100%; */
+}
+.room-group label {
+  font-size: 0.8rem;
+}
+.add-room-form {
+  background-color: white;
+  padding: 30px;
+  margin-top: 20px;
+  border-radius: 8px;
+  min-width: 800px;
+}
+.add-room-form fieldset {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 25px;
+  background-color: #fafbfc;
+}
+.add-room-form legend {
+  font-weight: 600;
+  color: #444;
+  background: #fff;
+  padding: 5px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.room-group input {
+  box-sizing: border-box;
+}
+.general_information {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.general_information input,
+.general_information select {
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(215, 215, 215);
+  padding: 0px 10px;
+}
+.room-numbers {
+  grid-column: 1/-1;
+}

@@ -5,16 +5,16 @@ export const bulkRoomCreate = async (req, res) => {
   try {
     const {
       hotelId,
-      roomNumbers,
-      floor,
-      roomType,
-      bedType,
-      numberOfBeds,
-      adults,
-      children,
-      pricePerNight,
-      amenities,
-      description,
+      roomNumbers,//
+      floor,//
+      roomType,//
+      bedType,//
+      numberOfBeds,//
+      adults,//
+      children,//
+      pricePerNight,//
+      amenities,//
+      description,//
     } = req.body;
 
     const userId = req.session?.userId;
