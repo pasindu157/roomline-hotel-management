@@ -13,6 +13,8 @@ body {
   --light-gray-font: rgb(99, 99, 99);
   --dark-blue-font: rgb(29, 57, 73);
   --submit-button-bg: rgb(120, 110, 255);
+  --submit-button-bg-hover: rgb(111, 102, 236);
+  --submit-button-bg-active: rgb(122, 112, 255);
 
   --header-font: "Playfair Display";
   --body-font: "Inter";

@@ -256,20 +256,6 @@ const HotelEditForm = () => {
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
             />
-            {/* {hotel?.coverImage && (
-              <div>
-                <img
-                  src={hotel.coverImage}
-                  alt="Current Cover"
-                  style={{
-                    width: "80px",
-                    height: "50px",
-                    objectFit: "cover",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-            )} */}
           </div>
           <div className="hotel-input-group hotel-amenities">
             <label htmlFor="">Hotel Amenities</label>

@@ -11,9 +11,9 @@ export const getAllHotels = async () => {
       return false;
     }
   } catch (error) {
-    const errorMsg = error.response?.data?.message || "Failed to load data";
+    const errorMsg = error.response?.data?.message || "Failed to load Hotels";
 
-    // toast.error(errorMsg);
+    toast.error(errorMsg);
     console.error("loading data error", error);
     throw error;
   }

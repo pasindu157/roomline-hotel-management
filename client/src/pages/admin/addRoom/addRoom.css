@@ -38,6 +38,7 @@
   margin-top: 20px;
   border-radius: 8px;
   min-width: 800px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .add-room-form fieldset {
   border: 1px solid #e0e0e0;
@@ -56,8 +57,10 @@
   font-size: 14px;
 }
 
-.room-group input {
+.room-group input,
+.room-group select {
   box-sizing: border-box;
+  margin-top: 5px;
 }
 .general_information {
   display: grid;
@@ -73,6 +76,123 @@
   border: 1px solid rgb(215, 215, 215);
   padding: 0px 10px;
 }
-.room-numbers {
-  grid-column: 1/-1;
+.price-capacity {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.price-capacity input {
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(215, 215, 215);
+  padding: 0px 10px;
+}
+.room-description textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 100px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(215, 215, 215);
+  padding: 0px 10px;
+}
+.amenity-box {
+  /* background-color: red; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin-top: 5px;
+}
+.amenity-box-item {
+  border: 1px solid gray;
+  color: var(--light-gray-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.selectedFacility {
+  background-color: rgb(209, 217, 255);
+  border: 1px solid rgb(75, 0, 225);
+  color: var(--dark-blue-font);
+}
+.add-more-amenites input {
+  width: 95%;
+  height: 35px;
+  border-radius: 5px 0px 0px 5px;
+  outline: none;
+  border: 1px solid rgb(215, 215, 215);
+  padding: 0px 10px;
+  margin-top: 0;
+}
+.add-more-amenites {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.add-more-amenites div {
+  height: 35px;
+  width: 35px;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--submit-button-bg);
+  color: white;
+  font-size: 1rem;
+  border-radius: 0px 5px 5px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.add-more-amenites div:hover {
+  background-color: var(--submit-button-bg-hover);
+}
+.add-more-amenites div:active {
+  background-color: var(--submit-button-bg-active);
+  scale: calc(0.95);
+}
+
+.submit_cancel button {
+  border: 0;
+  cursor: pointer;
+  background-color: var(--submit-button-bg);
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  user-select: none;
+}
+.submit_cancel {
+  display: flex;
+}
+.submit_cancel div {
+  border: 0;
+  cursor: pointer;
+  color: rgb(108, 108, 108);
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-left: 30px;
+  border: 1px solid gray;
+  background-color: white;
+  user-select: none;
+}
+.submit_cancel button:hover {
+  background-color: var(--submit-button-bg-hover);
+}
+.submit_cancel button:active {
+  background-color: var(--submit-button-bg-active);
+  scale: calc(0.95);
+}
+.submit_cancel div:active {
+  scale: calc(0.95);
+}
+.room-images {
+  margin-top: 5px;
 }

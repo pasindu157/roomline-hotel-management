@@ -19,3 +19,19 @@ export const getRoomsByHotelId = async (hotel) => {
     toast.error(errorMsg);
   }
 };
+
+export const addRoom = async (formData, onSuccess) => {
+  try {
+    const response = await api.post("/room/bulk-create", formData);
+    if (response.data.success) {
+      if (onSuccess) onSuccess();
+      toast.success(response.data.message);
+    }
+  } catch (error) {
+    console.error(error);
+
+    const errorMsg = error.response?.data?.message || "Error inserting rooms";
+
+    toast.error(errorMsg);
+  }
+};

@@ -21,13 +21,16 @@ const RoomManage = () => {
             }
           }
           setHotels(hotelList);
+          if (hotelList.length > 0 && !selectedHotel) {
+            setSelectedHotel(hotelList[0]._id);
+          }
         }
       } catch (error) {
         console.error(error);
       }
     };
     fetchHotels();
-  }, []);
+  }, [selectedHotel]);
 
   return (
     <div className="room-manage-container">
