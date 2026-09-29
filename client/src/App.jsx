@@ -7,6 +7,7 @@ import { AdminDashboard } from "./pages/admin/adminDashboard/AdminDashboard";
 import HotelEditForm from "./components/hotelEditForm/HotelEditForm";
 import HotelAdd from "./components/hotelAddForm/HotelAdd";
 import RoomManage from "./pages/admin/roomManage/RoomManage";
+import AddRoom from "./pages/admin/addRoom/AddRoom";
 
 const Home = () => <h1>customer home page</h1>;
 const ManagerDashboard = () => <h1>Manager dashboard</h1>;
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="/admin/hotel-edit/:id" element={<HotelEditForm />} />
         <Route path="/admin/add-hotel" element={<HotelAdd />} />
         <Route path="/admin/room-manage" element={<RoomManage />} />
+        <Route path="/admin/add-room" element={<AddRoom />} />
       </Route>
 
       {/* 🔒 MANAGERS only */}

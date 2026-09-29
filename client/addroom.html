@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Room Design Idea</title>
+  <style>
+    body {
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .add-room-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .add-room-content {
+      padding: 30px;
+    }
+
+    .add-room-header {
+      margin-bottom: 25px;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+    }
+
+    .add-room-header h2 {
+      margin: 0 0 5px 0;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .add-room-header p {
+      margin: 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* Form Styling */
+    .add-room-form fieldset {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 25px;
+      background-color: #fafbfc;
+    }
+
+    .add-room-form legend {
+      font-weight: 600;
+      color: #444;
+      background: #fff;
+      padding: 5px 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    /* Flex layout for side-by-side inputs */
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+      font-size: 14px;
+    }
+
+    /* Inputs, Textareas, and Selects */
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #333;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #0066cc;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    /* Checkboxes for Amenities */
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 8px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      font-weight: normal;
+      cursor: pointer;
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    input[type="file"] {
+      padding: 10px 0;
+      font-size: 14px;
+    }
+
+    /* Buttons */
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-secondary {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d0d0d0;
+    }
+
+    .btn-primary {
+      background-color: #0066cc;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0052a3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="add-room-container">
+    <div class="add-room-content">
+      
+      <div class="add-room-header">
+        <h2>Add New Room</h2>
+        <p>Fill in the details below to create a new room listing.</p>
+      </div>
+
+      <form class="add-room-form" action="#" method="POST">
+        <!-- General Information -->
+        <fieldset>
+          <legend>General Information</legend>
+          <div class="form-group">
+            <label for="room-title">Room Title / Name</label>
+            <input type="text" id="room-title" placeholder="e.g. Deluxe Ocean View Suite" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room-type">Room Type</label>
+              <select id="room-type" required>
+                <option value="" disabled selected>Select type</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="suite">Suite</option>
+                <option value="family">Family</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="room-number">Room Number</label>
+              <input type="text" id="room-number" placeholder="e.g. 101" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Pricing & Capacity -->
+        <fieldset>
+          <legend>Pricing & Capacity</legend>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="price">Price per Night ($)</label>
+              <input type="number" id="price" min="0" placeholder="0.00" required>
+            </div>
+            <div class="form-group">
+              <label for="max-people">Max People Capacity</label>
+              <input type="number" id="max-people" min="1" placeholder="2" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Description & Amenities -->
+        <fieldset>
+          <legend>Details & Amenities</legend>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" rows="4" placeholder="Briefly describe the room..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>Amenities</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="amenity" value="wifi"> Free Wi-Fi</label>
+              <label><input type="checkbox" name="amenity" value="ac"> Air Conditioning</label>
+              <label><input type="checkbox" name="amenity" value="tv"> Smart TV</label>
+              <label><input type="checkbox" name="amenity" value="minibar"> Mini Bar</label>
+              <label><input type="checkbox" name="amenity" value="view"> Sea View</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Image Upload -->
+        <fieldset>
+          <legend>Media</legend>
+          <div class="form-group">
+            <label for="room-images">Upload Room Images</label>
+            <input type="file" id="room-images" multiple accept="image/*">
+          </div>
+        </fieldset>
+        
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Room</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+</body>
+</html>
