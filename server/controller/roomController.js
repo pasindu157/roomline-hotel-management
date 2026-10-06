@@ -4,18 +4,37 @@ import Room from "../model/Room.js";
 export const bulkRoomCreate = async (req, res) => {
   try {
     const {
-      hotelId, //
-      roomNumbers, //
-      floor, //
-      roomType, //
-      bedType, //
-      numberOfBeds, //
-      adults, //
-      children, //
-      pricePerNight, //
-      amenities, //
-      description, //
+      hotelId,
+      roomNumbers,
+      floor,
+      roomType,
+      bedType,
+      numberOfBeds,
+      adults,
+      children,
+      pricePerNight,
+      amenities,
+      description,
     } = req.body;
+
+    if (
+      !hotelId ||
+      !roomNumbers?.trim() ||
+      !floor?.trim() ||
+      !roomType ||
+      !bedType ||
+      !numberOfBeds?.trim() ||
+      !adults ||
+      !children ||
+      !pricePerNight?.trim() ||
+      !amenities?.trim() ||
+      !description?.trim()
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Please fill all the fields",
+      });
+    }
 
     const userId = req.session?.userId;
 
@@ -54,7 +73,7 @@ export const bulkRoomCreate = async (req, res) => {
           .filter(Boolean)
       : [];
 
-    if (imageUrls.lenght > 5) {
+    if (req.files.length > 5) {
       return res.status(400).json({
         success: false,
         message: "You can only send 5 images",
@@ -196,7 +215,6 @@ export const getRoomsByHotelId = async (req, res) => {
     }
 
     const room = await Room.find({ hotelId, isActive: true }).sort({
-      floor: 1,
       roomNumber: 1,
     });
 

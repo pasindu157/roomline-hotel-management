@@ -15,7 +15,7 @@ roomRouter.post(
   "/bulk-create",
   requireAuth,
   requireRole("admin", "manager"),
-  upload.array("images", 5),
+  upload.array("images", 7),
   bulkRoomCreate,
 );
 roomRouter.put(
