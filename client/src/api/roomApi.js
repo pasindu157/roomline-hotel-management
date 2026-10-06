@@ -13,9 +13,7 @@ export const getRoomsByHotelId = async (hotel) => {
     }
   } catch (error) {
     console.error(error);
-
     const errorMsg = error.response?.data?.message || "Error loading rooms";
-
     toast.error(errorMsg);
   }
 };
@@ -29,9 +27,7 @@ export const addRoom = async (formData, onSuccess) => {
     }
   } catch (error) {
     console.error(error);
-
     const errorMsg = error.response?.data?.message || "Error inserting rooms";
-
     toast.error(errorMsg);
   }
 };

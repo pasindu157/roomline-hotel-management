@@ -196,3 +196,7 @@
 .room-images {
   margin-top: 5px;
 }
+.room-error{
+  font-size: 0.7rem;
+  color: red;
+}

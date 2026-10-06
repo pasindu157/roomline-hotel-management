@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import "./addRoom.css";
 import { getAllHotels } from "../../../api/hotelApi.js";
 import { addRoom } from "../../../api/roomApi.js";
+import {
+  adultChildCountValidate,
+  adutlsValidate,
+  childValidate,
+  descriptionValidate,
+  noOfBedsValidate,
+  priceValidate,
+} from "../../../validations/roomValidations.js";
 
 const AddRoom = () => {
   const roomFacilities = [
@@ -31,6 +39,14 @@ const AddRoom = () => {
   const [newAmenity, setNewAmenity] = useState("");
   const [images, setImages] = useState([]);
 
+  const [noOfBedsError, setNoOfBedsError] = useState("");
+  const [pricePerNightError, setPricePerNightError] = useState("");
+  const [adultsError, setAdultsError] = useState("");
+  const [childrenError, setChildrenError] = useState("");
+  const [adult_childrenCountError, setAdult_childrenCountError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+
+  //fetch hotels
   useEffect(() => {
     const fetchHotel = async () => {
       try {
@@ -45,6 +61,7 @@ const AddRoom = () => {
     fetchHotel();
   }, []);
 
+  //handle toggle amenity
   const handleToggleAmenity = (amenityName) => {
     if (selectedAmenities.includes(amenityName)) {
       setSelectedAmenities(
@@ -58,45 +75,70 @@ const AddRoom = () => {
     console.log(selectedAmenities);
   };
 
+  //handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const formData = new FormData();
-      formData.append("hotelId", selectedHotel);
-      formData.append("roomType", roomType);
-      formData.append("bedType", bedType);
-      formData.append("numberOfBeds", noOfBeds);
-      formData.append("floor", floor);
-      formData.append("roomNumbers", roomNumbers);
-      formData.append("pricePerNight", pricePerNight);
-      formData.append("adults", adults);
-      formData.append("children", children);
-      formData.append("description", description);
-      formData.append("amenities", selectedAmenities.join(","));
-      images.forEach((file) => {
-        formData.append("images", file);
-      });
+      const isBedValid = noOfBedsValidate(noOfBeds, setNoOfBedsError);
+      const isPriceValid = priceValidate(pricePerNight, setPricePerNightError);
+      const isAdultValid = adutlsValidate(adults, setAdultsError);
+      const isChildValid = childValidate(children, setChildrenError);
+      const isAdultChildValid = adultChildCountValidate(
+        adults,
+        children,
+        setAdult_childrenCountError,
+      );
+      const isDescriptionValid = descriptionValidate(
+        description,
+        setDescriptionError,
+      );
 
-      await addRoom(formData, () => {
-        setHotel("");
-        setRoomType("");
-        setBedType("");
-        setNoOfBeds("");
-        setFloor("");
-        setRoomNumbers([]);
-        setPricePerNight("");
-        setAdults("");
-        setChildren("");
-        setDescription("");
-        setSelectedAmenities([]);
-        setImages("");
-      });
+      if (
+        isBedValid &&
+        isPriceValid &&
+        isAdultValid &&
+        isChildValid &&
+        isAdultChildValid &&
+        isDescriptionValid
+      ) {
+        const formData = new FormData();
+        formData.append("hotelId", selectedHotel);
+        formData.append("roomType", roomType);
+        formData.append("bedType", bedType);
+        formData.append("numberOfBeds", noOfBeds);
+        formData.append("floor", floor);
+        formData.append("roomNumbers", roomNumbers);
+        formData.append("pricePerNight", pricePerNight);
+        formData.append("adults", adults);
+        formData.append("children", children);
+        formData.append("description", description);
+        formData.append("amenities", selectedAmenities.join(","));
+        images.forEach((file) => {
+          formData.append("images", file);
+        });
+        console.log(formData);
+        await addRoom(formData, () => {
+          setHotel("");
+          setRoomType("");
+          setBedType("");
+          setNoOfBeds("");
+          setFloor("");
+          setRoomNumbers([]);
+          setPricePerNight("");
+          setAdults("");
+          setChildren("");
+          setDescription("");
+          setSelectedAmenities([]);
+          setImages("");
+        });
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
+  //handle add amenity to list
   const handleAddAmenity = (e) => {
     e?.preventDefault();
 
@@ -215,7 +257,7 @@ const AddRoom = () => {
                     </select>
                   </div>
                   <div className="noOf-beds">
-                    <label htmlFor="">No. of beds</label>
+                    <label htmlFor="">No. of beds(max : 3)</label>
                     <br />
                     <input
                       type="text"
@@ -224,6 +266,7 @@ const AddRoom = () => {
                       value={noOfBeds}
                       onChange={(e) => setNoOfBeds(e.target.value)}
                     />
+                    <span className="room-error">{noOfBedsError}</span>
                   </div>
                   <div className="floor-number">
                     <label htmlFor="">Floor Number</label>
@@ -265,9 +308,10 @@ const AddRoom = () => {
                       value={pricePerNight}
                       onChange={(e) => setPricePerNight(e.target.value)}
                     />
+                    <span className="room-error">{pricePerNightError}</span>
                   </div>
                   <div className="capacity">
-                    <label htmlFor="">Capacity(max)</label>
+                    <label htmlFor="">Capacity(max : 9)</label>
                     <input
                       type="text"
                       placeholder="Adults"
@@ -275,6 +319,7 @@ const AddRoom = () => {
                       value={adults}
                       onChange={(e) => setAdults(e.target.value)}
                     />
+                    <span className="room-error">{adultsError}</span>
                     <br />
 
                     <input
@@ -284,6 +329,10 @@ const AddRoom = () => {
                       value={children}
                       onChange={(e) => setChildren(e.target.value)}
                     />
+                    <span className="room-error">{childrenError}</span>
+                    <span className="room-error">
+                      {adult_childrenCountError}
+                    </span>
                   </div>
                 </div>
               </fieldset>
@@ -301,6 +350,7 @@ const AddRoom = () => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
+                    <span className="room-error">{descriptionError}</span>
                   </div>
                   <div className="amenitites">
                     <label htmlFor="">Amenities</label>
